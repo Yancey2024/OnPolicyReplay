@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # On-Policy Replay (OPR)
 
 A minimal reproduction of the EMNLP paper
@@ -73,3 +74,6 @@ To switch from **OPR-RU** (default) to **OPR-SC**, change the script name in `OP
 | `script/eval.py` | Multi-task evaluation on TRACE. |
 | `script/generate_opr_ru.py` | Build buffer with rule-based scores. |
 | `script/generate_opr_sc.py` | Build buffer with self-confidence scores. |
+=======
+# OnPolicyReplay
+>>>>>>> e6ab55610ef5c9dd4e208ef9460ebd5e996855f4
