@@ -24,24 +24,6 @@ def eval_rougel(gold_answer_list, response_list):
     return sum(score_list) / len(score_list)
 
 
-def eval_code(gold_answer_list, response_list):
-    
-    def postprocess(code):
-        code = code.replace("<NUM_LIT>", "0").replace("<STR_LIT>", "").replace("<CHAR_LIT>", "")
-        pattern = re.compile(r"<(STR|NUM|CHAR)_LIT:(.*?)>", re.S)
-        lits = re.findall(pattern, code)
-        for lit in lits:
-            code = code.replace(f"<{lit[0]}_LIT:{lit[1]}>", lit[1])
-        return code
-   
-    r_l = [postprocess(resp) for resp in response_list]
-    g_l = [postprocess(gt) for gt in gold_answer_list]
-    
-    score_list = [fuzz.ratio(r, g) for r, g in zip(r_l, g_l)]        for g, r in zip(gold_answer_list, response_list)
-    ]
-    
-    return sum(score_list) / len(score_list)
-
 
 def eval_code(gold_answer_list, response_list):
     
@@ -58,25 +40,6 @@ def eval_code(gold_answer_list, response_list):
     
     score_list = [fuzz.ratio(r, g) for r, g in zip(r_l, g_l)]
     
-    return sum(score_list) / len(score_list)
-
-
-def eval_acc(gold_answer_list, response_list):
-
-    score = 0
-
-    for g, r in zip(gold_answer_list, response_list):
-        if g[:1] == r[:1] and r != "":
-            score += 1
-
-    return (score / len(gold_answer_list)) * 100
-
-
-def eval_math(gold_answer_list, response_list):
-
-    score = 0
-
-    for g, r in zip(gold_answer_list, response_list):    
     return sum(score_list) / len(score_list)
 
 

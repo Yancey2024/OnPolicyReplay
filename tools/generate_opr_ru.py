@@ -37,25 +37,6 @@ def score_math(gold, response):
         invalid_str = ["", "."]
         for final_answer in reversed(answer):
             if final_answer not in invalid_str:
-                breakdef score_code(gold, response):
-    def postprocess(code):
-        code = code.replace("<NUM_LIT>", "0").replace("<STR_LIT>", "").replace("<CHAR_LIT>", "")
-        pattern = re.compile(r"<(STR|NUM|CHAR)_LIT:(.*?)>", re.S)
-        lits = re.findall(pattern, code)
-        for lit in lits:
-            code = code.replace(f"<{lit[0]}_LIT:{lit[1]}>", lit[1])
-        return code
-    return fuzz.ratio(postprocess(response), postprocess(gold))
-
-
-def score_math(gold, response):
-    answer = re.findall("(\\-?[0-9\\.\\,]+)", response)
-    if len(answer) == 0:
-        final_answer = None
-    else:
-        invalid_str = ["", "."]
-        for final_answer in reversed(answer):
-            if final_answer not in invalid_str:
                 break
     return 100 if final_answer == gold else 0
 

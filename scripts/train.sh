@@ -14,7 +14,6 @@ swift sft \
     --warmup_ratio 0.0 \
     --weight_decay 0.0 \
     --lr_scheduler_type linear \
-    --dataset_num_proc 64 \
     --save_only_model true \
     --use_liger_kernel true \
     --columns '{"prompt": "query", "answer": "response"}' \

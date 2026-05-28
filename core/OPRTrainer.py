@@ -2,9 +2,13 @@ import subprocess, os, shutil, sys
 
 
 class OnPolicyReplayTrainer:
-    def __init__(self, model_path, output_dir, rho):
+    def __init__(self, model_path, output_dir, reward_type, rho):
         self.model_path = model_path
+        
         self.output_dir = output_dir
+        os.makedirs(self.output_dir, exist_ok=True)
+        
+        self.reward_type = reward_type
         self.rho = rho
         
         self.dataset_list = [
@@ -43,7 +47,7 @@ class OnPolicyReplayTrainer:
             dataset_path = f'{dataset_path} {aux_dataset_path}'
 
         command = [
-            'bash', 'script/train.sh',
+            'bash', 'scripts/train.sh',
             self.model_path, dataset_path, self.epoch_list[self.task_id], self.output_dir
         ]
 
@@ -53,7 +57,7 @@ class OnPolicyReplayTrainer:
 
     def generate(self):
         command = [
-            sys.executable, "script/generate_opr_ru.py",
+            sys.executable, f"tools/generate_opr_{self.reward_type}.py",
             "--model-path", self.model_path,
             "--task-id", f'{self.task_id}',
             "--buffer-size", f'{self.buffer_size}',
@@ -62,7 +66,7 @@ class OnPolicyReplayTrainer:
 
     def test(self):
         command = [
-            sys.executable, "script/eval.py",
+            sys.executable, "tools/eval.py",
             "--model-path", self.model_path,
             "--task-id", f'{self.task_id}',
         ]
