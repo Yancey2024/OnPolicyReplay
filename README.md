@@ -1,7 +1,7 @@
 # On-Policy Replay for Continual Supervised Fine-Tuning
 
 <p align="center">
-  <a href="https://arxiv.org/pdf/..."><img src="https://img.shields.io/badge/Paper-arXiv%202604.08926-b31b1b" alt="Paper"></a>
+  <a href="https://arxiv.org/abs/2605.29495"><img src="https://img.shields.io/badge/Paper-arXiv%202604.29495-b31b1b" alt="Paper"></a>
 </p>
 
 This repo contains the code for On-Policy Replay (OPR) for continual supervised fine-tuning . OPR routes the on-policy signal through the replay data source instead of adding auxiliary distillation objectives. We provide both **OPR-RU** (rule-based scoring) and **OPR-SC** (self-confidence scoring), and show on TRACE with backbones such as Qwen2.5-7B-Instruct that OPR consistently reduces catastrophic forgetting.
